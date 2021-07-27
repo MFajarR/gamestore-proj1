@@ -11,8 +11,7 @@ const express = require("express"),
       flash = require("connect-flash"),
       isLoggedin = require("./views/assets/js/checkLogin.js"),
       {nanoid} = require("nanoid"),
-      mongodbstore = require('connect-mongo')(session),
-      port = process.env.PORT || 3000
+      mongodbstore = require('connect-mongo')(session)
 
 if(process.env.NODE_ENV !== "production"){
     require('dotenv').config()
@@ -178,6 +177,8 @@ app.post("/razorpay/success", async (req,res)=>{
 app.get("*", (req,res) => {
     res.render("error.ejs", {statusCode: 404, message: "Page Not Found"})
 })
+
+app.listen(process.env.PORT || 8080)
 
 app.use((err, req, res, next) => {
     let { statusCode=500 , message} = err
