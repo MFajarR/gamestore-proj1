@@ -178,7 +178,6 @@ app.get("*", (req,res) => {
     res.render("error.ejs", {statusCode: 404, message: "Page Not Found"})
 })
 
-app.listen(process.env.PORT || 8080)
 
 app.use((err, req, res, next) => {
     let { statusCode=500 , message} = err
