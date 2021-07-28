@@ -11,8 +11,7 @@ const express = require("express"),
       flash = require("connect-flash"),
       isLoggedin = require("./views/assets/js/checkLogin.js"),
       {nanoid} = require("nanoid"),
-      mongodbstore = require('connect-mongo')(session),
-      port = process.env.PORT || 3000
+      mongodbstore = require('connect-mongo')(session)
 
 if(process.env.NODE_ENV !== "production"){
     require('dotenv').config()
@@ -187,6 +186,5 @@ app.use((err, req, res, next) => {
     return res.render("error.ejs", {statusCode: statusCode, message: message})
 })
 
-app.listen(port, () => {
-    console.log(`gamestore servers have started on http://localhost:${port} !!`)
-})
+
+app.listen(process.env.PORT || 3000)
